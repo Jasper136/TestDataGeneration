@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32228.430
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDataGeneration", "TestDataGeneration\TestDataGeneration.csproj", "{3B013F73-C18F-482C-BA71-30BEFD7BF5A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestDataGeneration", "TestDataGeneration\TestDataGeneration.csproj", "{3B013F73-C18F-482C-BA71-30BEFD7BF5A9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDataGeneration.UnitTests", "TestDataGeneration.UnitTests\TestDataGeneration.UnitTests.csproj", "{5B199B6F-CEB2-48C1-8248-BC79CBC64D51}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{3B013F73-C18F-482C-BA71-30BEFD7BF5A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B013F73-C18F-482C-BA71-30BEFD7BF5A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B013F73-C18F-482C-BA71-30BEFD7BF5A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B199B6F-CEB2-48C1-8248-BC79CBC64D51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B199B6F-CEB2-48C1-8248-BC79CBC64D51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B199B6F-CEB2-48C1-8248-BC79CBC64D51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B199B6F-CEB2-48C1-8248-BC79CBC64D51}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
