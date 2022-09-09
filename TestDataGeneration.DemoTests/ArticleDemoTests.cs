@@ -66,10 +66,12 @@ public class ArticleDemoTests : IDisposable
             .RuleFor(x => x.Price, f => f.Random.Int(0));
         var article1 = articleFaker.Generate();
         var article2 = articleFaker.RuleFor(x => x.Price, Some.Int(int.MinValue, 0)).Generate();
-        var article3 = articleFaker.RuleFor(x => x.Price, Some.Int(0)).Generate();
+        var article3 = articleFaker.Generate();
+        var article4 = articleFaker.RuleFor(x => x.Price, Some.Int(0)).Generate();
         Assert.True(article1.Price >= 0);
         Assert.True(article2.Price <= 0);
-        Assert.True(article3.Price >= 0);
+        Assert.True(article3.Price <= 0);
+        Assert.True(article4.Price >= 0);
     }
 
     /// <summary>
