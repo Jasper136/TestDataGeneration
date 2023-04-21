@@ -34,7 +34,7 @@ jobs:
       run: dotnet test --no-build --verbosity normal
       
     - name: Pack
-      run: dotnet pack --configuration Release --output ${{ env.NuGetDirectory }}
+      run: dotnet pack TestDataGeneration/TestDataGeneration.csproj --configuration Release --output ${{ env.NuGetDirectory }}
       
     - name: Check
       run: ls ${{ env.NuGetDirectory }}
