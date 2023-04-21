@@ -5,11 +5,16 @@ name: .NET
 
 on:
   workflow_dispatch: # Allow running the workflow manually from the GitHub UI
-  # push:
-  #   branches: [ "main" ]
+  push:
+    branches: [ "main" ]
   # pull_request:
   #   branches: [ "main" ]
 
+env:
+  # DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1
+  # DOTNET_NOLOGO: true
+  NuGetDirectory: ${{ github.workspace}}/nuget
+  
 jobs:
   build:
 
@@ -27,3 +32,9 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
+      
+    - name: Pack
+      run: dotnet pack --configuration Release --output ${{ env.NuGetDirectory }}
+      
+    - name: Check
+      run: ls ${{ env.NuGetDirectory }}
