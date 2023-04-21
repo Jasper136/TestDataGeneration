@@ -5,10 +5,18 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <RepositoryUrl>https://github.com/Jasper136/TestDataGeneration</RepositoryUrl>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>TestDataGeneration</PackageId>
+    <Version>0.1.0</Version>
+    <Authors>Jasper Van Mensel</Authors>
+    <Description>TODO</Description>
+    <PackageTags>library, unit testing</PackageTags>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
-
+   
   <ItemGroup>
     <None Include="..\README.md" Pack="True" PackagePath="\"/>
     <None Include="..\LICENSE" Pack="True" PackagePath="\"/>
