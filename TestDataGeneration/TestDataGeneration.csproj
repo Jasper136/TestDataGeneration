@@ -11,8 +11,8 @@
     <PackageId>Some.TestDataGeneration</PackageId>
     <Version>0.1.0</Version>
     <Authors>Jasper Van Mensel</Authors>
-    <Description>A C# library, wrapping the AutoBogus (https://github.com/nickdodd79/AutoBogus) generator, providing reusable configuration and a more developer-friendly syntax.</Description>
-    <PackageTags>library, unit testing, data-generation</PackageTags>
+    <Description>A C# library, wrapping the AutoBogus generator, providing reusable configuration and a more developer-friendly syntax.</Description>
+    <PackageTags>library, unit-testing, data-generation</PackageTags>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
