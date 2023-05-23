@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -9,6 +9,10 @@
 
   <ItemGroup>
     <PackageReference Include="BenchmarkDotNet" Version="0.13.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TestDataGeneration\TestDataGeneration.csproj" />
   </ItemGroup>
 
 </Project>
