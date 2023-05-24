@@ -3,11 +3,22 @@ using BenchmarkDotNet.Running;
 using Bogus;
 using TestDataGeneration;
 using TestDataGeneration.DemoDomain;
+using TestDataGeneration.Wrapper;
 
 Console.WriteLine("Hello, World!");
-var summary = BenchmarkRunner.Run<SomeIntVsFakerRandomIntVsReusedFakerRandomIntVsSomeGeneratedIntVsFakerGenerateIntVsReusedFakerGenerateInt>();
+var summary = BenchmarkRunner.Run<PublishedSomeVsLocalSome>();
 //var summary = BenchmarkRunner.Run(typeof(Program).GetAssembly());
 Console.WriteLine("Bye, World!");
+
+//Benchmark comparing published Some.Int() vs local Some.Int()
+public class PublishedSomeVsLocalSome
+{
+    [Benchmark]
+    public int PublishedSomeInt() => PublishedSome.Int();
+
+    [Benchmark]
+    public int LocalSomeInt() => Some.Int();
+}
 
 //Benchmark comparing Some.Int() vs Faker.Random.Int() vs reused Faker.Random.Int()
 public class SomeVsFakerRandomVsReusedFakerRandom

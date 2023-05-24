@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestDataGeneration.DemoTest
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDataGeneration.Benchmarks", "TestDataGeneration.Benchmarks\TestDataGeneration.Benchmarks.csproj", "{24BED1AE-1EE2-4265-806A-6E6608F304B2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDataGeneration.Wrapper", "TestDataGeneration.Wrapper\TestDataGeneration.Wrapper.csproj", "{81CA9C8D-62F5-45EF-87D5-7F075F745A75}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{24BED1AE-1EE2-4265-806A-6E6608F304B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24BED1AE-1EE2-4265-806A-6E6608F304B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{24BED1AE-1EE2-4265-806A-6E6608F304B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81CA9C8D-62F5-45EF-87D5-7F075F745A75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81CA9C8D-62F5-45EF-87D5-7F075F745A75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81CA9C8D-62F5-45EF-87D5-7F075F745A75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81CA9C8D-62F5-45EF-87D5-7F075F745A75}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
