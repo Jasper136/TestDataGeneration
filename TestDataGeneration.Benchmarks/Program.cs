@@ -7,8 +7,8 @@ using TestDataGeneration.DemoDomain;
 using TestDataGeneration.Wrapper;
 
 Console.WriteLine("Hello, World!");
-//var summary = BenchmarkRunner.Run<PublishedSomeGeneratedVsLocalSomeGeneratedVsFakerGenerateVsReusedFakerGenerate>();
-var summary = BenchmarkRunner.Run(typeof(Program).GetAssembly());
+var summary = BenchmarkRunner.Run<PublishedSomeVsLocalSomeVsFakerRandomVsReusedFakerRandom>();
+//var summary = BenchmarkRunner.Run(typeof(Program).GetAssembly());
 Console.WriteLine("Bye, World!");
 
 //Benchmark comparing local Some, published Some, Faker.Random and reused Faker.Random

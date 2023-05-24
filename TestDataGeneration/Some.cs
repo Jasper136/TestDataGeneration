@@ -9,9 +9,11 @@ public class Some
 {
     static Some()
     {
+        _defaultFaker = new Faker();
         _defaultBinder = new DefaultBinder();
     }
 
+    private static readonly Faker _defaultFaker;
     private static DefaultBinder _defaultBinder;
 
     public static void CustomConfigApplied(DefaultBinder? defaultBinder = null)
@@ -252,7 +254,7 @@ public class Some
         new Faker().PickRandomParam(System.TimeZoneInfo.GetSystemTimeZones().ToArray());
 
     public static int Int(int min = int.MinValue, int max = int.MaxValue) =>
-       new Faker().Random.Int(min, max);
+        _defaultFaker.Random.Int(min, max);
 
     public static bool Bool() => new Faker().Random.Bool();
     public static Guid Guid() => new Faker().Random.Guid();
