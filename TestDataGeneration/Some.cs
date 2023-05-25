@@ -9,9 +9,11 @@ public class Some
 {
     static Some()
     {
+        DefaultFaker = new Faker();
         _defaultBinder = new DefaultBinder();
     }
 
+    private static readonly Faker DefaultFaker;
     private static DefaultBinder _defaultBinder;
 
     public static void CustomConfigApplied(DefaultBinder? defaultBinder = null)
@@ -149,7 +151,6 @@ public class Some
 
     private static object GeneratedValueType<TValueType>()
     {
-        var faker = new Faker();
         var type = typeof(TValueType);
 
         var underlyingType = Nullable.GetUnderlyingType(type);
@@ -162,7 +163,7 @@ public class Some
         }
         if (type.IsEnum)
         {
-            return GeneratedEnum<TValueType>(faker)!;
+            return GeneratedEnum<TValueType>(DefaultFaker)!;
         }
 
         return AutoFaker.Generate<TValueType>()!;
@@ -240,7 +241,7 @@ public class Some
     /// </summary>
     /// <param name="length">Length of generated string</param>
     /// <returns></returns>
-    public static string String(int length = 0) => length <= 0 ? String(40, 80) : new Faker().Random.AlphaNumeric(length);
+    public static string String(int length = 0) => length <= 0 ? String(40, 80) : DefaultFaker.Random.AlphaNumeric(length);
     public static string String(int minLength, int maxLength) => String(Int(minLength, maxLength));
 
     public static MailAddress MailAddress() =>
@@ -249,22 +250,21 @@ public class Some
             .Generate();
 
     public static TimeZoneInfo TimeZoneInfo() =>
-        new Faker().PickRandomParam(System.TimeZoneInfo.GetSystemTimeZones().ToArray());
+        DefaultFaker.PickRandomParam(System.TimeZoneInfo.GetSystemTimeZones().ToArray());
 
     public static int Int(int min = int.MinValue, int max = int.MaxValue) =>
-       new Faker().Random.Int(min, max);
+        DefaultFaker.Random.Int(min, max);
 
-    public static bool Bool() => new Faker().Random.Bool();
-    public static Guid Guid() => new Faker().Random.Guid();
+    public static bool Bool() => DefaultFaker.Random.Bool();
+    public static Guid Guid() => DefaultFaker.Random.Guid();
 
     public static DateTime DateTime()
     {
-        var faker = new Faker();
-        return faker.Random.Bool() ? faker.Date.Past() : faker.Date.Future();
+        return DefaultFaker.Random.Bool() ? DefaultFaker.Date.Past() : DefaultFaker.Date.Future();
     }
-    public static DateTime DateTimeAfter(DateTime refDate) => new Faker().Date.Future(refDate: refDate);
-    public static DateTime DateTimeBefore(DateTime refDate) => new Faker().Date.Past(refDate: refDate);
-    public static DateTime DateTimeBetween(DateTime start, DateTime end) => new Faker().Date.Between(start, end);
+    public static DateTime DateTimeAfter(DateTime refDate) => DefaultFaker.Date.Future(refDate: refDate);
+    public static DateTime DateTimeBefore(DateTime refDate) => DefaultFaker.Date.Past(refDate: refDate);
+    public static DateTime DateTimeBetween(DateTime start, DateTime end) => DefaultFaker.Date.Between(start, end);
 
     #endregion
 
