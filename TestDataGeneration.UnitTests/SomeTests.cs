@@ -206,7 +206,7 @@ public class SomeTests
     // - generate DummyObject without overriding the rule
     // - verify that the default rule is used
     [Fact]
-    public void GeneratedObject_WithRuleSetInDefaultRulesAndOverriden_ReturnsObjectWithDefaultValue()
+    public void GeneratedObject_WithRuleSetInDefaultRulesAndOverridenInPreviousGeneration_ReturnsObjectWithDefaultValue()
     {
         var guid = Guid.NewGuid();
         var result = Some.InstanceOf<DummyObject>().RuleFor(x=>x.GuidWithRuleFor, _=>guid).Generate();
