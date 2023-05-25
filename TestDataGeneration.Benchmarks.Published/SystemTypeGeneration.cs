@@ -7,6 +7,7 @@ namespace TestDataGeneration.Benchmarks.Published;
 //todo: figure out how to reuse benchmark code from TestDataGeneration.Benchmarks instead of duplicating it here
 
 //Benchmark comparing new Faker.Random, reused Faker.Random, Some and Some.Generated<T>()
+[Config(typeof(PackageVersionsConfig))]
 public class IntGenerationBenchmarks
 {
     private readonly Faker _faker = new Faker();
