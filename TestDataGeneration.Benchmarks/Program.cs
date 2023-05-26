@@ -7,23 +7,9 @@ using TestDataGeneration.Benchmarks;
 using TestDataGeneration.DemoDomain;
 
 Console.WriteLine("Hello, World!");
-//var summary = BenchmarkRunner.Run<IntGenerationBenchmarks>();
-var summary = BenchmarkRunner.Run(typeof(Program).GetAssembly());
+var summary = BenchmarkRunner.Run<CustomTypeGenerationBenchmarks>();
+//var summary = BenchmarkRunner.Run(typeof(Program).GetAssembly());
 Console.WriteLine("Bye, World!");
-
-//Benchmark comparing local Some.Generated<T>(), published Some.Generated<T>(), Faker<T>().Generate() and reused Faker<T>().Generate()
-public class ArticleGenerationBenchmarks
-{
-    private readonly Faker<Article> _faker = new Faker<Article>();
-    [Benchmark]
-    public Article ReusedFakerGenerateArticle() => _faker.Generate();
-
-    [Benchmark(Baseline = true)]
-    public Article NewFakerGenerateArticle() => new Faker<Article>().Generate();
-
-    [Benchmark]
-    public Article SomeGeneratedArticle() => Some.Generated<Article>();
-}
 
 ////Benchmark comparing Some.Generated<Article>(count) vs Faker<Article>().Generate(count) vs reused Faker<Article>().Generate(count)
 //public class SomeGeneratedCountVsFakerGenerateCountVsReusedFakerGenerateCount
