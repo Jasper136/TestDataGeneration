@@ -12,4 +12,8 @@
     <PackageReference Include="Some.TestDataGeneration" Version="0.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TestDataGeneration.DemoDomain\TestDataGeneration.DemoDomain.csproj" />
+  </ItemGroup>
+
 </Project>

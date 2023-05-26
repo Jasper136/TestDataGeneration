@@ -15,6 +15,8 @@ public class Some
 
     private static readonly Faker DefaultFaker;
     private static DefaultBinder _defaultBinder;
+    
+    private static readonly Dictionary<Type, object> TypedFakerInstances = new();
 
     public static void CustomConfigApplied(DefaultBinder? defaultBinder = null)
     {
@@ -23,12 +25,27 @@ public class Some
             _defaultBinder = defaultBinder;
         }
     }
-
+    
     public static AutoFaker<TType> InstanceOf<TType>() where TType : class
     {
-        return _defaultBinder.TypeRules.TryGetValue(typeof(TType), out var typeRules)
-            ? AutoFakerWithRules<TType>(typeRules, _defaultBinder)
-            : new AutoFaker<TType>(_defaultBinder);
+        return InternalInstanceOf<TType>().AutoFakerClone();
+    }
+    
+    private static AutoFaker<TType> InternalInstanceOf<TType>() where TType : class
+    {
+        AutoFaker<TType> typedAutoFaker;
+        if (TypedFakerInstances.TryGetValue(typeof(TType), out var autoFaker))
+        {
+            typedAutoFaker = (AutoFaker<TType>)autoFaker;
+        }
+        else
+        {
+            typedAutoFaker = _defaultBinder.TypeRules.TryGetValue(typeof(TType), out var typeRules)
+                ? AutoFakerWithRules<TType>(typeRules, _defaultBinder)
+                : new AutoFaker<TType>(_defaultBinder);
+            TypedFakerInstances.Add(typeof(TType), typedAutoFaker);
+        }
+        return typedAutoFaker;
     }
 
     public static object Generated(Type type)
@@ -189,7 +206,7 @@ public class Some
     {
         try
         {
-            var customFaker = InstanceOf<T>();
+            var customFaker = InternalInstanceOf<T>();
             var generateMethods = customFaker.GetType().GetMethods()
                 .Where(y => y.Name == nameof(AutoFaker<T>.Generate));
             var generateMethod = generateMethods.Single(y => y.GetParameters().Length == 1);

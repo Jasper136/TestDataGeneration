@@ -176,4 +176,43 @@ public class SomeTests
     }
 
     #endregion
+
+    //test to verify default rules are used when no rules are specified
+    //scenario:
+    // - generate DummyObject with a rule set in default rules
+    // - verify that the rule is used
+    [Fact]
+    public void GeneratedObject_WithRuleSetInDefaultRules_ReturnsObjectWithDefaultValue()
+    {
+        var result = Some.Generated<DummyObject>();
+        Assert.Equal(DummyObject.GuidValue, result.GuidWithRuleFor);
+    }
+
+    //test to verify rules are used when specified
+    //scenario:
+    // - generate DummyObject with a rule set in default rules and override the rule
+    // - verify that the new rule is used
+    [Fact]
+    public void GeneratedObject_WithRuleSetInDefaultRulesAndOverriden_ReturnsObjectWithOverridenValue()
+    {
+        var guid = Guid.NewGuid();
+        var result = Some.InstanceOf<DummyObject>().RuleFor(x=>x.GuidWithRuleFor, _=>guid).Generate();
+        Assert.Equal(guid, result.GuidWithRuleFor);
+    }
+
+    //test to verify that overriding a rule does not affect future generations
+    //scenario:
+    // - generate DummyObject with a rule set in default rules and override the rule
+    // - generate DummyObject without overriding the rule
+    // - verify that the default rule is used
+    [Fact]
+    public void GeneratedObject_WithRuleSetInDefaultRulesAndOverridenInPreviousGeneration_ReturnsObjectWithDefaultValue()
+    {
+        var guid = Guid.NewGuid();
+        var result = Some.InstanceOf<DummyObject>().RuleFor(x=>x.GuidWithRuleFor, _=>guid).Generate();
+        Assert.Equal(guid, result.GuidWithRuleFor);
+
+        result = Some.Generated<DummyObject>();
+        Assert.Equal(DummyObject.GuidValue, result.GuidWithRuleFor);
+    }
 }
