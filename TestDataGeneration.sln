@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestDataGeneration.DemoTest
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestDataGeneration.Benchmarks", "TestDataGeneration.Benchmarks\TestDataGeneration.Benchmarks.csproj", "{24BED1AE-1EE2-4265-806A-6E6608F304B2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDataGeneration.Benchmarks.Published", "TestDataGeneration.Benchmarks.Published\TestDataGeneration.Benchmarks.Published.csproj", "{F0C7E0AE-35A7-435F-8519-CE591BFE2EF2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestDataGeneration.Benchmarks.Published", "TestDataGeneration.Benchmarks.Published\TestDataGeneration.Benchmarks.Published.csproj", "{F0C7E0AE-35A7-435F-8519-CE591BFE2EF2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
