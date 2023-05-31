@@ -8,11 +8,11 @@ using Xunit;
 
 public class SomeTests
 {
-    [Fact]
-    public void GeneratedObject_Type_ReturnsObjectOfType()
+    [Theory]
+    [InlineData(typeof(DummyObject))]
+    [InlineData(typeof(DummyObjectWithoutDefaultRules))]
+    public void GeneratedObject_Type_ReturnsObjectOfType(Type type)
     {
-        var type = typeof(DummyObject);
-
         var result = Some.Generated(type);
 
         Assert.IsType(type, result);
@@ -196,7 +196,7 @@ public class SomeTests
     public void GeneratedObject_WithRuleSetInDefaultRulesAndOverriden_ReturnsObjectWithOverridenValue()
     {
         var guid = Guid.NewGuid();
-        var result = Some.InstanceOf<DummyObject>().RuleFor(x=>x.GuidWithRuleFor, _=>guid).Generate();
+        var result = Some.InstanceOf<DummyObject>().RuleFor(x => x.GuidWithRuleFor, _ => guid).Generate();
         Assert.Equal(guid, result.GuidWithRuleFor);
     }
 
@@ -209,10 +209,43 @@ public class SomeTests
     public void GeneratedObject_WithRuleSetInDefaultRulesAndOverridenInPreviousGeneration_ReturnsObjectWithDefaultValue()
     {
         var guid = Guid.NewGuid();
-        var result = Some.InstanceOf<DummyObject>().RuleFor(x=>x.GuidWithRuleFor, _=>guid).Generate();
+        var result = Some.InstanceOf<DummyObject>().RuleFor(x => x.GuidWithRuleFor, _ => guid).Generate();
         Assert.Equal(guid, result.GuidWithRuleFor);
 
         result = Some.Generated<DummyObject>();
         Assert.Equal(DummyObject.GuidValue, result.GuidWithRuleFor);
+    }
+
+
+    [Fact]
+    public void GenerateInstanceOfObjectWithoutDefaultRules_WithRuleSetInTest_ReturnsObjectWithValueSetInTest()
+    {
+        var value = Some.String();
+        var result = Some.InstanceOf<LocalDummyObjectWithoutDefaultRules>()
+            .RuleFor(x => x.StringProp, value)
+            .Generate();
+
+        Assert.Equal(value, result.StringProp);
+    }
+
+    /// <summary>
+    /// Exists only to prevent pollution of other tests in <see cref="GenerateInstanceOfObjectWithoutDefaultRules_WithRuleSetInTest_ReturnsObjectWithValueSetInTest"/>
+    /// Do not use this class in other tests.
+    /// </summary>
+    class LocalDummyObjectWithoutDefaultRules : DummyObjectWithoutDefaultRules
+    {
+    }
+
+    [Fact]
+    public void GenerateInstanceOfObjectWithoutDefaultRulesAfterDefaultGenerated_WithRuleSetInTest_ReturnsObjectWithValueSetInTest()
+    {
+        var _ = Some.Generated<DummyObjectWithoutDefaultRules>();
+
+        var value = Some.String();
+        var result = Some.InstanceOf<DummyObjectWithoutDefaultRules>()
+            .RuleFor(x => x.StringProp, value)
+            .Generate();
+
+        Assert.Equal(value, result.StringProp);
     }
 }

@@ -9,3 +9,13 @@ public class DummyObject
     internal static Guid GuidValue = new Guid("290FBE44-7B47-4096-B6E3-3E83906605F3");
     public Guid GuidWithRuleFor { get; set; }
 }
+
+/// <summary>
+/// Should not have default rules set by custom binder
+/// </summary>
+public class DummyObjectWithoutDefaultRules
+{
+    public string? StringProp { get; set; }
+    
+    public Guid Guid { get; set; }
+}
