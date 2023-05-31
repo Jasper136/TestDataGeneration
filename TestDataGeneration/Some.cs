@@ -1,4 +1,5 @@
-﻿using System.Net.Mail;
+﻿using System.Collections.Concurrent;
+using System.Net.Mail;
 using System.Reflection;
 using AutoBogus;
 using Bogus;
@@ -16,7 +17,7 @@ public class Some
     private static readonly Faker DefaultFaker;
     private static DefaultBinder _defaultBinder;
     
-    private static readonly Dictionary<Type, object> TypedFakerInstances = new();
+    private static readonly ConcurrentDictionary<Type, object> TypedFakerInstances = new();
 
     public static void CustomConfigApplied(DefaultBinder? defaultBinder = null)
     {
@@ -33,19 +34,23 @@ public class Some
     
     private static AutoFaker<TType> InternalInstanceOf<TType>() where TType : class
     {
-        AutoFaker<TType> typedAutoFaker;
-        if (TypedFakerInstances.TryGetValue(typeof(TType), out var autoFaker))
-        {
-            typedAutoFaker = (AutoFaker<TType>)autoFaker;
-        }
-        else
-        {
-            typedAutoFaker = _defaultBinder.TypeRules.TryGetValue(typeof(TType), out var typeRules)
-                ? AutoFakerWithRules<TType>(typeRules, _defaultBinder)
-                : new AutoFaker<TType>(_defaultBinder);
-            TypedFakerInstances.Add(typeof(TType), typedAutoFaker);
-        }
-        return typedAutoFaker;
+        return (AutoFaker<TType>)TypedFakerInstances.GetOrAdd(typeof(TType), _ => _defaultBinder.TypeRules.TryGetValue(typeof(TType), out var typeRules)
+            ? AutoFakerWithRules<TType>(typeRules, _defaultBinder)
+            : new AutoFaker<TType>(_defaultBinder));
+
+        //AutoFaker<TType> typedAutoFaker;
+        //if (TypedFakerInstances.TryGetValue(typeof(TType), out var autoFaker))
+        //{
+        //    typedAutoFaker = (AutoFaker<TType>)autoFaker;
+        //}
+        //else
+        //{
+        //    typedAutoFaker = _defaultBinder.TypeRules.TryGetValue(typeof(TType), out var typeRules)
+        //        ? AutoFakerWithRules<TType>(typeRules, _defaultBinder)
+        //        : new AutoFaker<TType>(_defaultBinder);
+        //    TypedFakerInstances.Add(typeof(TType), typedAutoFaker);
+        //}
+        //return typedAutoFaker;
     }
 
     public static object Generated(Type type)
@@ -142,6 +147,7 @@ public class Some
             if (typeof(TType) == typeof(TimeZoneInfo)) return (TType)(object)TimeZoneInfo();
             if (TypeRules.TryGetValue(typeof(TType), out var typeRules)) return GeneratedReferenceTypeWithRules<TType>(typeRules);
             return base.CreateInstance<TType>(context);
+            return GeneratedReferenceTypeWithoutRules<TType>();
         }
 
         public override void PopulateInstance<TType>(object instance, AutoGenerateContext context, IEnumerable<MemberInfo>? members = null)
@@ -220,6 +226,21 @@ public class Some
         }
     }
 
+    private static TReferenceType GeneratedReferenceTypeWithoutRules<TReferenceType>()
+    {
+        try
+        {
+            var genericRandomImplMethod = typeof(Some).GetMethod(nameof(ConstrainedGeneratedReferenceTypeWithoutRules), BindingFlags.NonPublic | BindingFlags.Static);
+            var typedRandomImplMethod = genericRandomImplMethod.MakeGenericMethod(typeof(TReferenceType));
+            var customRandomObject = typedRandomImplMethod.Invoke(null, new object[] {  });
+            return (TReferenceType)customRandomObject!;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
     private static TReferenceType GeneratedReferenceTypeWithRules<TReferenceType>(MulticastDelegate typeRules)
     {
         try
@@ -234,6 +255,11 @@ public class Some
             Console.WriteLine(e);
             throw;
         }
+    }
+
+    private static T ConstrainedGeneratedReferenceTypeWithoutRules<T>() where T : class
+    {
+        return AutoFakerWithRules<T>((Func<Faker<T>, Faker<T>>)(f => f)).Generate();
     }
 
     private static T ConstrainedGeneratedReferenceTypeWithRules<T>(MulticastDelegate typeRules) where T : class

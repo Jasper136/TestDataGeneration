@@ -6,107 +6,107 @@ using TestDataGeneration.DemoDomain;
 
 namespace TestDataGeneration.Benchmarks;
 
-[GroupBenchmarksBy(BenchmarkLogicalGroupRule.ByCategory)]
-[CategoriesColumn]
-public class SystemTypeAutoFakerBaselineBenchmarks
-{
-    private readonly Faker _faker = new Faker();
+//[GroupBenchmarksBy(BenchmarkLogicalGroupRule.ByCategory)]
+//[CategoriesColumn]
+//public class SystemTypeAutoFakerBaselineBenchmarks
+//{
+//    private readonly Faker _faker = new Faker();
 
-    [BenchmarkCategory(nameof(Int32)), Benchmark]
-    public int ReusedFakerRandomInt()
-    {
-        return _faker.Random.Int();
-    }
+//    [BenchmarkCategory(nameof(Int32)), Benchmark]
+//    public int ReusedFakerRandomInt()
+//    {
+//        return _faker.Random.Int();
+//    }
 
-    [BenchmarkCategory(nameof(Int32)), Benchmark(Baseline = true)]
-    public int NewFakerRandomInt()
-    {
-        return new Faker().Random.Int();
-    }
+//    [BenchmarkCategory(nameof(Int32)), Benchmark(Baseline = true)]
+//    public int NewFakerRandomInt()
+//    {
+//        return new Faker().Random.Int();
+//    }
 
-    [BenchmarkCategory(nameof(Int32)), Benchmark]
-    public int AutoFakerGenerateInt()
-    {
-        return AutoFaker.Generate<int>();
-    }
-
-
-    [BenchmarkCategory(nameof(String)), Benchmark]
-    public string ReusedFakerRandomString()
-    {
-        return _faker.Random.String();
-    }
-
-    [BenchmarkCategory(nameof(String)), Benchmark(Baseline = true)]
-    public string NewFakerRandomString()
-    {
-        return new Faker().Random.String();
-    }
-
-    [BenchmarkCategory(nameof(String)), Benchmark]
-    public string AutoFakerGenerateString()
-    {
-        return AutoFaker.Generate<string>();
-    }
+//    [BenchmarkCategory(nameof(Int32)), Benchmark]
+//    public int AutoFakerGenerateInt()
+//    {
+//        return AutoFaker.Generate<int>();
+//    }
 
 
-    [BenchmarkCategory(nameof(Guid)), Benchmark]
-    public Guid ReusedFakerRandomGuid()
-    {
-        return _faker.Random.Guid();
-    }
+//    [BenchmarkCategory(nameof(String)), Benchmark]
+//    public string ReusedFakerRandomString()
+//    {
+//        return _faker.Random.String();
+//    }
 
-    [BenchmarkCategory(nameof(Guid)), Benchmark(Baseline = true)]
-    public Guid NewFakerRandomGuid()
-    {
-        return new Faker().Random.Guid();
-    }
+//    [BenchmarkCategory(nameof(String)), Benchmark(Baseline = true)]
+//    public string NewFakerRandomString()
+//    {
+//        return new Faker().Random.String();
+//    }
 
-    [BenchmarkCategory(nameof(Guid)), Benchmark]
-    public Guid NewAutoFakeGenerateGuid()
-    {
-        return AutoFaker.Generate<Guid>();
-    }
-
-
-    [BenchmarkCategory(nameof(DateTime)), Benchmark]
-    public DateTime ReusedFakerRandomDateTime()
-    {
-        //todo: figure out best Faker.Date method to use
-        return _faker.Date.Soon();
-    }
-
-    [BenchmarkCategory(nameof(DateTime)), Benchmark(Baseline = true)]
-    public DateTime NewFakerRandomDateTime()
-    {
-        return new Faker().Date.Soon();
-    }
-
-    [BenchmarkCategory(nameof(DateTime)), Benchmark]
-    public DateTime AutoFakerGenerateDateTime()
-    {
-        return AutoFaker.Generate<DateTime>();
-    }
+//    [BenchmarkCategory(nameof(String)), Benchmark]
+//    public string AutoFakerGenerateString()
+//    {
+//        return AutoFaker.Generate<string>();
+//    }
 
 
-    [BenchmarkCategory(nameof(Boolean)), Benchmark]
-    public bool ReusedFakerRandomBool()
-    {
-        return _faker.Random.Bool();
-    }
+//    [BenchmarkCategory(nameof(Guid)), Benchmark]
+//    public Guid ReusedFakerRandomGuid()
+//    {
+//        return _faker.Random.Guid();
+//    }
 
-    [BenchmarkCategory(nameof(Boolean)), Benchmark(Baseline = true)]
-    public bool NewFakerRandomBool()
-    {
-        return new Faker().Random.Bool();
-    }
+//    [BenchmarkCategory(nameof(Guid)), Benchmark(Baseline = true)]
+//    public Guid NewFakerRandomGuid()
+//    {
+//        return new Faker().Random.Guid();
+//    }
 
-    [BenchmarkCategory(nameof(Boolean)), Benchmark]
-    public bool AutoFakerGenerateBool()
-    {
-        return AutoFaker.Generate<bool>();
-    }
-}
+//    [BenchmarkCategory(nameof(Guid)), Benchmark]
+//    public Guid NewAutoFakeGenerateGuid()
+//    {
+//        return AutoFaker.Generate<Guid>();
+//    }
+
+
+//    [BenchmarkCategory(nameof(DateTime)), Benchmark]
+//    public DateTime ReusedFakerRandomDateTime()
+//    {
+//        //todo: figure out best Faker.Date method to use
+//        return _faker.Date.Soon();
+//    }
+
+//    [BenchmarkCategory(nameof(DateTime)), Benchmark(Baseline = true)]
+//    public DateTime NewFakerRandomDateTime()
+//    {
+//        return new Faker().Date.Soon();
+//    }
+
+//    [BenchmarkCategory(nameof(DateTime)), Benchmark]
+//    public DateTime AutoFakerGenerateDateTime()
+//    {
+//        return AutoFaker.Generate<DateTime>();
+//    }
+
+
+//    [BenchmarkCategory(nameof(Boolean)), Benchmark]
+//    public bool ReusedFakerRandomBool()
+//    {
+//        return _faker.Random.Bool();
+//    }
+
+//    [BenchmarkCategory(nameof(Boolean)), Benchmark(Baseline = true)]
+//    public bool NewFakerRandomBool()
+//    {
+//        return new Faker().Random.Bool();
+//    }
+
+//    [BenchmarkCategory(nameof(Boolean)), Benchmark]
+//    public bool AutoFakerGenerateBool()
+//    {
+//        return AutoFaker.Generate<bool>();
+//    }
+//}
 
 [GroupBenchmarksBy(BenchmarkLogicalGroupRule.ByCategory)]
 [CategoriesColumn]

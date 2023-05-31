@@ -11,14 +11,14 @@ using TestDataGeneration.Benchmarks;
 using TestDataGeneration.DemoDomain;
 
 Console.WriteLine("Hello, World!");
-//var summary = BenchmarkRunner.Run<CustomTypeGenerationBenchmarks>();
+//var summary = BenchmarkRunner.Run<CustomTypesGenerationBenchmarks<object>>();
 //var summary = BenchmarkRunner.Run(typeof(Program).GetAssembly());
 var summary = BenchmarkRunner.Run(
     typeof(Program).GetAssembly(),
     ManualConfig.Create(DefaultConfig.Instance)
         .WithOptions(ConfigOptions.JoinSummary | ConfigOptions.DisableLogFile)
         .AddExporter(MarkdownExporter.GitHub)
-        .AddJob(Job.ShortRun));
+        .AddJob(Job.MediumRun));
 Console.WriteLine("Bye, World!");
 
 ////Benchmark comparing Some.Generated<Article>(count) vs Faker<Article>().Generate(count) vs reused Faker<Article>().Generate(count)

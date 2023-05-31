@@ -11,13 +11,9 @@ public class TestBinder : Some.DefaultBinder
         TypeRules[typeof(DummyObject)] = DummyObjectRules;
 
         //todo: avoid this, when no rules are needed, you should not have to set them (source generator??)
-        TypeRules[typeof(DummyObjectWithoutDefaultRules)] = DummyObjectWithoutDefaultRulesRules;
+        TypeRules[typeof(DummyObjectWithoutDefaultRules)] = (Func<Faker<DummyObjectWithoutDefaultRules>, Faker<DummyObjectWithoutDefaultRules>>)(f => f);
     }
 
     private static readonly Func<Faker<DummyObject>, Faker<DummyObject>> DummyObjectRules =
         f => f.RuleFor(x => x.GuidWithRuleFor, DummyObject.GuidValue);
-
-    //todo: avoid this, when no rules are needed, you should not have to set them (source generator??)
-    private static readonly Func<Faker<DummyObjectWithoutDefaultRules>, Faker<DummyObjectWithoutDefaultRules>> DummyObjectWithoutDefaultRulesRules =
-        f => f;
 }
