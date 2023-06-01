@@ -146,8 +146,8 @@ public class Some
             if (typeof(TType) == typeof(MailAddress)) return (TType)(object)MailAddress();
             if (typeof(TType) == typeof(TimeZoneInfo)) return (TType)(object)TimeZoneInfo();
             if (TypeRules.TryGetValue(typeof(TType), out var typeRules)) return GeneratedReferenceTypeWithRules<TType>(typeRules);
+            if (typeof(TType).IsClass) return GeneratedReferenceTypeWithoutRules<TType>(TypeRules);
             return base.CreateInstance<TType>(context);
-            return GeneratedReferenceTypeWithoutRules<TType>();
         }
 
         public override void PopulateInstance<TType>(object instance, AutoGenerateContext context, IEnumerable<MemberInfo>? members = null)
@@ -226,13 +226,13 @@ public class Some
         }
     }
 
-    private static TReferenceType GeneratedReferenceTypeWithoutRules<TReferenceType>()
+    private static TReferenceType GeneratedReferenceTypeWithoutRules<TReferenceType>(Dictionary<Type, MulticastDelegate> typeRulesDictionary)
     {
         try
         {
             var genericRandomImplMethod = typeof(Some).GetMethod(nameof(ConstrainedGeneratedReferenceTypeWithoutRules), BindingFlags.NonPublic | BindingFlags.Static);
             var typedRandomImplMethod = genericRandomImplMethod.MakeGenericMethod(typeof(TReferenceType));
-            var customRandomObject = typedRandomImplMethod.Invoke(null, new object[] {  });
+            var customRandomObject = typedRandomImplMethod.Invoke(null, new object[] { typeRulesDictionary });
             return (TReferenceType)customRandomObject!;
         }
         catch (Exception e)
@@ -257,9 +257,12 @@ public class Some
         }
     }
 
-    private static T ConstrainedGeneratedReferenceTypeWithoutRules<T>() where T : class
+    private static T ConstrainedGeneratedReferenceTypeWithoutRules<T>(Dictionary<Type, MulticastDelegate> typeRulesDictionary) where T : class
     {
-        return AutoFakerWithRules<T>((Func<Faker<T>, Faker<T>>)(f => f)).Generate();
+        var typeRules = (Func<Faker<T>, Faker<T>>)(f => f);
+        //add default typeRules to dictionary, to avoid default populate is called
+        typeRulesDictionary.TryAdd(typeof(T), typeRules);
+        return AutoFakerWithRules<T>(typeRules).Generate();
     }
 
     private static T ConstrainedGeneratedReferenceTypeWithRules<T>(MulticastDelegate typeRules) where T : class

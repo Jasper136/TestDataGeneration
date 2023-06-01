@@ -24,7 +24,7 @@ internal static class AutoFakerExtensions
         {
             cloneStrictModes.Add(root.Key, root.Value);
         }
-        strictModesField.SetValue(clone, cloneStrictModes);
+        //strictModesField.SetValue(clone, cloneStrictModes);
 
         //create actions
         var createActionsField = typeof(AutoFaker<T>).GetField("CreateActions", BindingFlags.NonPublic | BindingFlags.Instance);
@@ -34,7 +34,7 @@ internal static class AutoFakerExtensions
         {
             cloneCreateActions[root.Key] = root.Value;
         }
-        createActionsField.SetValue(clone, cloneCreateActions);
+        //createActionsField.SetValue(clone, cloneCreateActions);
 
         //finalize actions
         var finalizeActionsField = typeof(AutoFaker<T>).GetField("FinalizeActions", BindingFlags.NonPublic | BindingFlags.Instance);
@@ -44,7 +44,7 @@ internal static class AutoFakerExtensions
         {
             cloneFinalizeActions.Add(root.Key, root.Value);
         }
-        finalizeActionsField.SetValue(clone, cloneFinalizeActions);
+        //finalizeActionsField.SetValue(clone, cloneFinalizeActions);
         
         //actions
         var actionsField = typeof(AutoFaker<T>).GetField("Actions", BindingFlags.NonPublic | BindingFlags.Instance);
