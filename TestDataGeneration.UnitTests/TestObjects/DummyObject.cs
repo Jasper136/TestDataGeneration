@@ -8,6 +8,17 @@ public class DummyObject
 
     internal static Guid GuidValue = new Guid("290FBE44-7B47-4096-B6E3-3E83906605F3");
     public Guid GuidWithRuleFor { get; set; }
+    public TimeSpan TimeSpan { get; set; }
+    public ChildObject ChildObject { get; set; }
+}
+
+public class ChildObject
+{
+    public string? StringProp { get; set; }
+    
+    public Guid Guid { get; set; }
+
+    public TimeSpan TimeSpan { get; set; }
 }
 
 /// <summary>
@@ -18,4 +29,6 @@ public class DummyObjectWithoutDefaultRules
     public string? StringProp { get; set; }
     
     public Guid Guid { get; set; }
+
+    public TimeSpan TimeSpan { get; set; }
 }

@@ -229,8 +229,8 @@ public class SomeTests
     }
 
     /// <summary>
-    /// Exists only to prevent pollution of other tests in <see cref="GenerateInstanceOfObjectWithoutDefaultRules_WithRuleSetInTest_ReturnsObjectWithValueSetInTest"/>
-    /// Do not use this class in other tests.
+    /// Exists only to prevent pollution from other tests
+    /// This class should only be generated with <see cref="Some.InstanceOf&lt;TType&gt;"/>
     /// </summary>
     class LocalDummyObjectWithoutDefaultRules : DummyObjectWithoutDefaultRules
     {
@@ -244,6 +244,18 @@ public class SomeTests
         var value = Some.String();
         var result = Some.InstanceOf<DummyObjectWithoutDefaultRules>()
             .RuleFor(x => x.StringProp, value)
+            .Generate();
+
+        Assert.Equal(value, result.StringProp);
+    }
+
+    [Fact]
+    public void GenerateInstanceOfObjectWithNonClassPropWithoutDefaultRules_WithCustomInstantiatorSetInTest_ReturnsObject()
+    {
+        var value = Some.String();
+        var result = Some.InstanceOf<LocalDummyObjectWithoutDefaultRules>()
+            .RuleFor(x => x.StringProp, value)
+            .CustomInstantiator(_ => new LocalDummyObjectWithoutDefaultRules())
             .Generate();
 
         Assert.Equal(value, result.StringProp);
