@@ -8,9 +8,9 @@ public class TestBinder : Some.DefaultBinder
 {
     public TestBinder()
     {
-        TypeRules[typeof(DummyObject)] = ArticleRules;
+        TypeRules[typeof(DummyObject)] = DummyObjectRules;
     }
 
-    private static readonly Func<Faker<DummyObject>, Faker<DummyObject>> ArticleRules =
+    private static readonly Func<Faker<DummyObject>, Faker<DummyObject>> DummyObjectRules =
         f => f.RuleFor(x => x.GuidWithRuleFor, DummyObject.GuidValue);
 }
