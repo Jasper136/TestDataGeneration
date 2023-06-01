@@ -16,7 +16,8 @@ public class Some
 
     private static readonly Faker DefaultFaker;
     private static DefaultBinder _defaultBinder;
-    
+
+    //todo: ensure thread safety elsewhere in the code! (tests?, analyzer?)
     private static readonly ConcurrentDictionary<Type, object> TypedFakerInstances = new();
 
     public static void CustomConfigApplied(DefaultBinder? defaultBinder = null)
@@ -125,7 +126,8 @@ public class Some
 
     public class DefaultBinder : AutoBinder
     {
-        protected internal readonly Dictionary<Type, MulticastDelegate> TypeRules = new();
+        //todo: ensure thread safety elsewhere in the code! (tests?, analyzer?)
+        protected internal readonly ConcurrentDictionary<Type, MulticastDelegate> TypeRules = new();
 
         public override TType CreateInstance<TType>(AutoGenerateContext context)
         {
@@ -212,7 +214,7 @@ public class Some
         }
     }
 
-    private static TReferenceType GeneratedReferenceTypeWithoutRules<TReferenceType>(Dictionary<Type, MulticastDelegate> typeRulesDictionary)
+    private static TReferenceType GeneratedReferenceTypeWithoutRules<TReferenceType>(ConcurrentDictionary<Type, MulticastDelegate> typeRulesDictionary)
     {
         try
         {
@@ -243,7 +245,7 @@ public class Some
         }
     }
 
-    private static T ConstrainedGeneratedReferenceTypeWithoutRules<T>(Dictionary<Type, MulticastDelegate> typeRulesDictionary) where T : class
+    private static T ConstrainedGeneratedReferenceTypeWithoutRules<T>(ConcurrentDictionary<Type, MulticastDelegate> typeRulesDictionary) where T : class
     {
         var typeRules = (Func<Faker<T>, Faker<T>>)(f => f);
         //add default typeRules to dictionary, to avoid default populate is called
