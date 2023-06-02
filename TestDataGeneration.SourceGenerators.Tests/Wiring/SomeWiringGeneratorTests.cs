@@ -5,7 +5,7 @@ namespace TestDataGeneration.SourceGenerators.Tests.Wiring;
 
 public class SomeWiringGeneratorTests
 {
-    [Fact(Skip = "Not yet supported by ci-pipeline")]
+    [Fact]
     public async Task WiringMarkerAttribute_TemplateComparison()
     {
         var sourceFilesDirectory = new DirectoryInfo("Wiring\\Templates\\Written\\");
