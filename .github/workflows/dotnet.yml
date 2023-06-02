@@ -6,9 +6,9 @@ name: .NET
 on:
   workflow_dispatch: # Allow running the workflow manually from the GitHub UI
   push:
+    branches: [ "main", "features/*", "bugs/*" ]
+  pull_request:
     branches: [ "main" ]
-  # pull_request:
-  #   branches: [ "main" ]
   release:
     types:
       - published    # Run the workflow when a new GitHub release is published
@@ -91,7 +91,11 @@ jobs:
       # If you retry a failed workflow, already published packages will be skipped without error.
     - name: Publish NuGet package
       shell: pwsh
+      # run: |
+      #   foreach($file in (Get-ChildItem "${{ env.NuGetDirectory }}" -Recurse -Include *.nupkg)) {
+      #       dotnet nuget push $file --api-key "${{ secrets.NUGET_API_KEY }}" --source https://api.nuget.org/v3/index.json --skip-duplicate
+      #   }
       run: |
         foreach($file in (Get-ChildItem "${{ env.NuGetDirectory }}" -Recurse -Include *.nupkg)) {
-            dotnet nuget push $file --api-key "${{ secrets.NUGET_API_KEY }}" --source https://api.nuget.org/v3/index.json --skip-duplicate
+            dotnet nuget push $file --api-key "${{ secrets.NUGET_API_KEY }}" --source https://api.nuget.org/v3/index.json
         }
