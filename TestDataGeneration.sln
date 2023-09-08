@@ -11,15 +11,25 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestDataGeneration.DemoDoma
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestDataGeneration.DemoTests", "TestDataGeneration.DemoTests\TestDataGeneration.DemoTests.csproj", "{7CD5D045-2E84-4A57-8EC4-2D76630F84BC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestDataGeneration.Benchmarks", "TestDataGeneration.Benchmarks\TestDataGeneration.Benchmarks.csproj", "{24BED1AE-1EE2-4265-806A-6E6608F304B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestDataGeneration.Benchmarks", "Benchmarks\TestDataGeneration.Benchmarks\TestDataGeneration.Benchmarks.csproj", "{24BED1AE-1EE2-4265-806A-6E6608F304B2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestDataGeneration.Benchmarks.Published", "TestDataGeneration.Benchmarks.Published\TestDataGeneration.Benchmarks.Published.csproj", "{F0C7E0AE-35A7-435F-8519-CE591BFE2EF2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestDataGeneration.Benchmarks.Published", "Benchmarks\TestDataGeneration.Benchmarks.Published\TestDataGeneration.Benchmarks.Published.csproj", "{F0C7E0AE-35A7-435F-8519-CE591BFE2EF2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDataGeneration.SourceGenerators", "TestDataGeneration.SourceGenerators\TestDataGeneration.SourceGenerators.csproj", "{308F0DD0-3EAA-4CD1-A4F8-34CDC44BC17F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestDataGeneration.SourceGenerators", "TestDataGeneration.SourceGenerators\TestDataGeneration.SourceGenerators.csproj", "{308F0DD0-3EAA-4CD1-A4F8-34CDC44BC17F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDataGeneration.SourceGenerators.Tests", "TestDataGeneration.SourceGenerators.Tests\TestDataGeneration.SourceGenerators.Tests.csproj", "{C110595A-FDE7-4055-AB3D-D3CB6C0A9FB4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestDataGeneration.SourceGenerators.Tests", "TestDataGeneration.SourceGenerators.Tests\TestDataGeneration.SourceGenerators.Tests.csproj", "{C110595A-FDE7-4055-AB3D-D3CB6C0A9FB4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDataGeneration.SourceGenerators.Templates", "TestDataGeneration.SourceGenerators.Templates\TestDataGeneration.SourceGenerators.Templates.csproj", "{4B8F69A0-7ED2-472A-BEAA-CB67FFAA16DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestDataGeneration.SourceGenerators.Templates", "TestDataGeneration.SourceGenerators.Templates\TestDataGeneration.SourceGenerators.Templates.csproj", "{4B8F69A0-7ED2-472A-BEAA-CB67FFAA16DE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestDataGeneration.Benchmarks.TestRunSimulations.UsingStaticAutoFaker", "Benchmarks\TestDataGeneration.Benchmarks.TestRunSimulations.UsingStaticAutoFaker\TestDataGeneration.Benchmarks.TestRunSimulations.UsingStaticAutoFaker.csproj", "{8FC77EE2-E0C7-4173-A7BD-25AF6BBCF3DE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Benchmarks", "Benchmarks", "{3A1EFF13-0A14-4B8A-B617-6827B5F78FB8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestDataGeneration.Benchmarks.TestRunSimulations.UsingNewAutoFaker", "BenchMarks\TestDataGeneration.Benchmarks.TestRunSimulations.UsingNewAutoFaker\TestDataGeneration.Benchmarks.TestRunSimulations.UsingNewAutoFaker.csproj", "{CB5B2B51-96E1-49D6-9FF4-F6D5A17C7C6F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDataGeneration.Benchmarks.TestRunSimulations.UsingReusedAutoFaker", "Benchmarks\TestDataGeneration.Benchmarks.TestRunSimulations.UsingReusedAutoFaker\TestDataGeneration.Benchmarks.TestRunSimulations.UsingReusedAutoFaker.csproj", "{7B07873C-6259-40E4-9AAB-87DD1CEA536A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDataGeneration.Benchmarks.TestRunSimulations.UsingSome", "Benchmarks\TestDataGeneration.Benchmarks.TestRunSimulations.UsingSome\TestDataGeneration.Benchmarks.TestRunSimulations.UsingSome.csproj", "{DFD5C55F-E75A-469D-A036-414384EB76AB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,9 +73,33 @@ Global
 		{4B8F69A0-7ED2-472A-BEAA-CB67FFAA16DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B8F69A0-7ED2-472A-BEAA-CB67FFAA16DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4B8F69A0-7ED2-472A-BEAA-CB67FFAA16DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FC77EE2-E0C7-4173-A7BD-25AF6BBCF3DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FC77EE2-E0C7-4173-A7BD-25AF6BBCF3DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FC77EE2-E0C7-4173-A7BD-25AF6BBCF3DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FC77EE2-E0C7-4173-A7BD-25AF6BBCF3DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB5B2B51-96E1-49D6-9FF4-F6D5A17C7C6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB5B2B51-96E1-49D6-9FF4-F6D5A17C7C6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB5B2B51-96E1-49D6-9FF4-F6D5A17C7C6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB5B2B51-96E1-49D6-9FF4-F6D5A17C7C6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B07873C-6259-40E4-9AAB-87DD1CEA536A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B07873C-6259-40E4-9AAB-87DD1CEA536A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B07873C-6259-40E4-9AAB-87DD1CEA536A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B07873C-6259-40E4-9AAB-87DD1CEA536A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFD5C55F-E75A-469D-A036-414384EB76AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFD5C55F-E75A-469D-A036-414384EB76AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFD5C55F-E75A-469D-A036-414384EB76AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFD5C55F-E75A-469D-A036-414384EB76AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{24BED1AE-1EE2-4265-806A-6E6608F304B2} = {3A1EFF13-0A14-4B8A-B617-6827B5F78FB8}
+		{F0C7E0AE-35A7-435F-8519-CE591BFE2EF2} = {3A1EFF13-0A14-4B8A-B617-6827B5F78FB8}
+		{8FC77EE2-E0C7-4173-A7BD-25AF6BBCF3DE} = {3A1EFF13-0A14-4B8A-B617-6827B5F78FB8}
+		{CB5B2B51-96E1-49D6-9FF4-F6D5A17C7C6F} = {3A1EFF13-0A14-4B8A-B617-6827B5F78FB8}
+		{7B07873C-6259-40E4-9AAB-87DD1CEA536A} = {3A1EFF13-0A14-4B8A-B617-6827B5F78FB8}
+		{DFD5C55F-E75A-469D-A036-414384EB76AB} = {3A1EFF13-0A14-4B8A-B617-6827B5F78FB8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {46CAE564-4A2D-4315-9E79-D4F0F14C6BAD}

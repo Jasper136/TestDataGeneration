@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="BenchmarkDotNet" Version="0.13.5" />
+    <PackageReference Include="xunit.runner.utility" Version="2.4.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TestDataGeneration.Benchmarks.TestRunSimulations.UsingNewAutoFaker\TestDataGeneration.Benchmarks.TestRunSimulations.UsingNewAutoFaker.csproj" />
+    <ProjectReference Include="..\TestDataGeneration.Benchmarks.TestRunSimulations.UsingReusedAutoFaker\TestDataGeneration.Benchmarks.TestRunSimulations.UsingReusedAutoFaker.csproj" />
+    <ProjectReference Include="..\TestDataGeneration.Benchmarks.TestRunSimulations.UsingSome\TestDataGeneration.Benchmarks.TestRunSimulations.UsingSome.csproj" />
+    <ProjectReference Include="..\TestDataGeneration.Benchmarks.TestRunSimulations.UsingStaticAutoFaker\TestDataGeneration.Benchmarks.TestRunSimulations.UsingStaticAutoFaker.csproj" />
+    <ProjectReference Include="..\..\\TestDataGeneration.DemoDomain\TestDataGeneration.DemoDomain.csproj" />
+    <ProjectReference Include="..\..\TestDataGeneration.UnitTests\TestDataGeneration.UnitTests.csproj" />
+    <ProjectReference Include="..\..\TestDataGeneration\TestDataGeneration.csproj" />
+  </ItemGroup>
+
+</Project>
