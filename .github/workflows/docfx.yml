@@ -27,6 +27,7 @@ jobs:
       run: |
         sudo apt-get install -y mono-complete
         mono _docfx/docfx.exe docfx.json
+        mv _site/README.html _site/index.html
 
     - name: Deploy documentation
       uses: peaceiris/actions-gh-pages@v3
