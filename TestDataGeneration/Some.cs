@@ -6,6 +6,9 @@ using Bogus;
 
 namespace TestDataGeneration;
 
+/// <summary>
+/// Represents a class for generating test data.
+/// </summary>
 public class Some
 {
     static Some()
@@ -20,6 +23,10 @@ public class Some
     //todo: ensure thread safety elsewhere in the code! (tests?, analyzer?)
     private static readonly ConcurrentDictionary<Type, object> TypedFakerInstances = new();
 
+    /// <summary>
+    /// Applies a custom configuration to the default binder.
+    /// </summary>
+    /// <param name="defaultBinder">The custom default binder.</param>
     public static void CustomConfigApplied(DefaultBinder? defaultBinder = null)
     {
         if (defaultBinder != null)
@@ -28,6 +35,11 @@ public class Some
         }
     }
     
+    /// <summary>
+    /// Gets an instance of AutoFaker for the specified type.
+    /// </summary>
+    /// <typeparam name="TType">The type of the instance.</typeparam>
+    /// <returns>An instance of AutoFaker.</returns>
     public static AutoFaker<TType> InstanceOf<TType>() where TType : class
     {
         return InternalInstanceOf<TType>().AutoFakerClone();
@@ -40,6 +52,11 @@ public class Some
             : new AutoFaker<TType>(_defaultBinder));
     }
 
+    /// <summary>
+    /// Generates an object of the specified type.
+    /// </summary>
+    /// <param name="type">The type of the object to generate.</param>
+    /// <returns>The generated object.</returns>
     public static object Generated(Type type)
     {
         try
@@ -58,6 +75,11 @@ public class Some
         }
     }
 
+    /// <summary>
+    /// Generates an object of the specified type.
+    /// </summary>
+    /// <typeparam name="TType">The type of the object to generate.</typeparam>
+    /// <returns>The generated object.</returns>
     public static TType Generated<TType>()
     {
         if (typeof(TType).IsValueType)
@@ -68,19 +90,44 @@ public class Some
         return GeneratedReferenceType<TType>();
     }
 
+    /// <summary>
+    /// Generates a list of objects of the specified type.
+    /// </summary>
+    /// <typeparam name="TType">The type of the objects to generate.</typeparam>
+    /// <param name="count">The number of objects to generate.</param>
+    /// <returns>A list of generated objects.</returns>
     public static List<TType> Generated<TType>(int count)
     {
         return Enumerable.Range(1, count).Select(_ => Generated<TType>()).ToList();
     }
 
+    /// <summary>
+    /// Generates a list of objects of the specified type within the specified range.
+    /// </summary>
+    /// <typeparam name="T">The type of the objects to generate.</typeparam>
+    /// <param name="min">The minimum number of objects to generate.</param>
+    /// <param name="max">The maximum number of objects to generate.</param>
+    /// <returns>A list of generated objects.</returns>
     public static List<T> Generated<T>(int min, int max) => Generated<T>(Int(min, max));
 
+    /// <summary>
+    /// Generates a value from the provided possible values.
+    /// </summary>
+    /// <typeparam name="TType">The type of the value to generate.</typeparam>
+    /// <param name="possibleValues">The possible values to choose from.</param>
+    /// <returns>The generated value.</returns>
     public static TType From<TType>(params TType[] possibleValues)
     {
         if (!possibleValues.Any()) throw new ArgumentException("Possible values must be provided.");
         return possibleValues[Int(0, possibleValues.Length - 1)];
     }
 
+    /// <summary>
+    /// Generates a value that is not in the excluded values.
+    /// </summary>
+    /// <typeparam name="TType">The type of the value to generate.</typeparam>
+    /// <param name="excludedValues">The excluded values.</param>
+    /// <returns>The generated value.</returns>
     public static TType Except<TType>(params TType[] excludedValues)
     {
         if (!excludedValues.Any()) throw new ArgumentException("Excluded values must be provided.");
