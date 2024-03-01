@@ -4,12 +4,15 @@
   "xrefmap": "xrefmap.yml",
   "files": [
     {
+      "log_codes": [
+        "InvalidFileLink"
+      ],
       "type": "Conceptual",
       "source_relative_path": "README.md",
       "output": {
         ".html": {
           "relative_path": "README.html",
-          "hash": "VupOg0FFdQ06xTad9ZOFS18HkqokYOIvtkQtEKXMiqw="
+          "hash": "jsgtmYacfNnh3tPZ4L1cvSyLOgvq3KDu5UTJ0vCsgZg="
         }
       },
       "is_incremental": false,
