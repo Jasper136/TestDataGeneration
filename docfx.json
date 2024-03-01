@@ -1,48 +1,59 @@
 {
-  "metadata": [
-    {
-      "src": [
+    "metadata": [
+      {
+        "src": [
+          {
+            "files": [
+              "src/**.csproj"
+            ],
+            "exclude": [
+              "**/bin/**",
+              "**/obj/**"
+            ]
+          }
+        ],
+        "dest": "api"
+      }
+    ],
+    "build": {
+      "content": [
         {
-          "files": [ "**/*.csproj" ],
-          "exclude": [ "**/obj/**", "**/bin/**" ],
-          "src": "./"
+          "files": [
+            "api/**.yml",
+            "README.md"
+          ]
         }
       ],
-      "dest": "api",
+      "resource": [
+        {
+          "files": [
+            "images/**"
+          ]
+        }
+      ],
+      "overwrite": [
+        {
+          "files": [
+            "api/**.md",
+            "api/index.md"
+          ],
+          "exclude": [
+            "api/obj/**",
+            "api/bin/**"
+          ]
+        }
+      ],
+      "dest": "_site",
+      "globalMetadataFiles": [],
+      "fileMetadataFiles": [],
+      "template": [
+        "default"
+      ],
+      "postProcessors": [],
+      "markdownEngineName": "markdig",
+      "noLangKeyword": false,
+      "keepFileLink": false,
+      "cleanupCacheHistory": false,
       "disableGitFeatures": false
     }
-  ],
-  "build": {
-    "content": [
-      {
-        "files": [ "api/**.yml", "api/index.md" ],
-        "src": "./",
-        "dest": "./"
-      }
-    ],
-    "resource": [
-      {
-        "files": [ "images/**" ],
-        "src": "./",
-        "dest": "./"
-      }
-    ],
-    "overwrite": [
-      {
-        "files": [ "apidoc/**.md" ],
-        "src": "./",
-        "dest": "./"
-      }
-    ],
-    "dest": "_site",
-    "globalMetadataFiles": [],
-    "fileMetadataFiles": [],
-    "template": [ "default" ],
-    "postProcessors": [],
-    "markdownEngineName": "markdig",
-    "noLangKeyword": false,
-    "keepFileLink": false,
-    "cleanupCacheHistory": false,
-    "disableGitFeatures": false
   }
-}
