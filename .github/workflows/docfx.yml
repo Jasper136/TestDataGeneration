@@ -1,0 +1,34 @@
+name: Generate DocFX Documentation
+
+on:
+  push:
+    branches:
+      - features/generated_docs
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '5.0.x'
+
+    - name: Install DocFX
+      run: |
+        wget https://github.com/dotnet/docfx/releases/download/v2.58.9/docfx.zip
+        unzip docfx.zip -d _docfx
+
+    - name: Generate documentation
+      run: |
+        _docfx/docfx.exe docfx.json
+
+    - name: Deploy documentation
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./_site
