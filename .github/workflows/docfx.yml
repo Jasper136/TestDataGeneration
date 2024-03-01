@@ -23,6 +23,10 @@ jobs:
         wget https://github.com/dotnet/docfx/releases/download/v2.58.9/docfx.zip
         unzip docfx.zip -d _docfx
 
+    - name: Add navigation links to README
+      run: |
+        echo -e "\n[API Documentation](api/toc.html)\n[User Guide](guide/toc.html)\n[FAQ](faq/toc.html)" >> README.md
+  
     - name: Generate documentation
       run: |
         sudo apt-get install -y mono-complete
