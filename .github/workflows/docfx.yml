@@ -25,7 +25,8 @@ jobs:
 
     - name: Generate documentation
       run: |
-        _docfx/docfx.exe docfx.json
+        sudo apt-get install -y mono-complete
+        mono _docfx/docfx.exe docfx.json
 
     - name: Deploy documentation
       uses: peaceiris/actions-gh-pages@v3
