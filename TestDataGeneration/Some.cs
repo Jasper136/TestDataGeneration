@@ -7,7 +7,7 @@ using Bogus;
 namespace TestDataGeneration;
 
 /// <summary>
-/// Represents a class for generating test data.
+/// Represents a class that provides methods for generating test data.
 /// </summary>
 public class Some
 {
@@ -146,6 +146,12 @@ public class Some
         return value;
     }
 
+    /// <summary>
+    /// Generates a list of unique values of the specified enum type.
+    /// </summary>
+    /// <typeparam name="TEnum">The type of the enum.</typeparam>
+    /// <param name="length">The number of unique values to generate.</param>
+    /// <returns>A list of unique enum values.</returns>
     public static List<TEnum> UniqueValues<TEnum>(int length) where TEnum : Enum
     {
         if (Enum.GetValues(typeof(TEnum)).Length < length)
@@ -166,11 +172,21 @@ public class Some
         return enumValues;
     }
 
+    /// <summary>
+    /// Generates a list of unique values of the specified enum type within the specified range.
+    /// </summary>
+    /// <typeparam name="TEnum">The type of the enum.</typeparam>
+    /// <param name="min">The minimum number of unique values to generate.</param>
+    /// <param name="max">The maximum number of unique values to generate.</param>
+    /// <returns>A list of unique enum values.</returns>
     public static List<TEnum> UniqueValues<TEnum>(int min, int max) where TEnum : Enum =>
         UniqueValues<TEnum>(Int(min, max));
 
     #region Generation behavior
 
+    /// <summary>
+    /// Represents a default binder for generating test data.
+    /// </summary>
     public class DefaultBinder : AutoBinder
     {
         //todo: ensure thread safety elsewhere in the code! (tests?, analyzer?)
