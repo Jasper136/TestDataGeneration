@@ -25,7 +25,7 @@ jobs:
 
     - name: Add navigation links to README
       run: |
-        echo -e "\n[API Documentation](api/toc.html)\n[User Guide](guide/toc.html)\n[FAQ](faq/toc.html)" >> README.md
+        echo -e "\r\n [API Documentation](api/toc.html)" >> README.md
   
     - name: Generate documentation
       run: |
