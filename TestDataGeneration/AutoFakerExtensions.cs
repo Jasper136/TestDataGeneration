@@ -1,5 +1,5 @@
 ﻿using System.Reflection;
-using AutoBogus;
+using Soenneker.Utils.AutoBogus;
 using Bogus;
 
 namespace TestDataGeneration;

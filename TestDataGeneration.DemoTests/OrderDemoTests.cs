@@ -1,5 +1,5 @@
 ﻿using System;
-using AutoBogus;
+using Soenneker.Utils.AutoBogus;
 using TestDataGeneration.DemoDomain;
 using Xunit;
 

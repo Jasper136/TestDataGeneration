@@ -1,7 +1,7 @@
 ﻿using System.Collections.Concurrent;
 using System.Net.Mail;
 using System.Reflection;
-using AutoBogus;
+using Soenneker.Utils.AutoBogus;
 using Bogus;
 
 namespace TestDataGeneration;
@@ -259,7 +259,7 @@ public class Some
     }
 
     //Do not pass binder when invoked from binder to avoid StackOverflowExceptions
-    private static AutoFaker<TType> AutoFakerWithRules<TType>(MulticastDelegate typeRules, IAutoBinder? binder = null) where TType : class
+    private static AutoFaker<TType> AutoFakerWithRules<TType>(MulticastDelegate typeRules, AutoBinder? binder = null) where TType : class
     {
         var autoFaker = binder != null ? new AutoFaker<TType>(binder) : new AutoFaker<TType>();
         return (AutoFaker<TType>)((Func<Faker<TType>, Faker<TType>>)typeRules)(autoFaker);

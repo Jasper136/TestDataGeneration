@@ -11,7 +11,7 @@
     <PackageId>Some.TestDataGeneration</PackageId>
     <Version>0.3.2</Version>
     <Authors>Jasper Van Mensel</Authors>
-    <Description>A C# library, wrapping the AutoBogus generator, providing reusable configuration and a more developer-friendly syntax.</Description>
+    <Description>A C# library, wrapping the Soenneker.Utils.AutoBogus generator, providing reusable configuration and a more developer-friendly syntax.</Description>
     <PackageTags>library, unit-testing, data-generation</PackageTags>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
@@ -23,7 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoBogus" Version="2.13.1" />
+    <PackageReference Include="Soenneker.Utils.AutoBogus" Version="2.1.1" />
   </ItemGroup>
 
 </Project>

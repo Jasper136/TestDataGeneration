@@ -1,4 +1,4 @@
-﻿using AutoBogus;
+﻿using Soenneker.Utils.AutoBogus;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Configs;
 using Bogus;
